@@ -1,0 +1,25 @@
+{
+  "name": "@NolanLauncher/vite-plugin-jsx",
+  "version": "0.0.1",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NolanLauncher/vite-plugin-jsx.git"
+  },
+  "keywords": [
+    "jsx"
+  ],
+  "author": "NolanLauncher",
+  "license": "MIT",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/NolanLauncher/vite-plugin-jsx/issues"
+  },
+  "homepage": "https://github.com/NolanLauncher/vite-plugin-jsx#readme",
+  "files": [
+    "src/",
+    "package.json",
+    "README.md",
+    "LISCENE"
+  ]
+}
