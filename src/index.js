@@ -1,5 +1,7 @@
 import Parser from "./Parser.js";
 
+const PACKAGE_NAME = '@NolanLauncher/vite-plugin-jsx'
+
 function transformJSX(code, opts) {
   if (!code.includes('<')) return code
   return new Parser(code, opts).parse()
@@ -20,6 +22,8 @@ export default function jsxPlugin(opts = {}) {
     exclude    = /node_modules/,
   } = opts
 
+  const autoImport = `import { ${pragma}, ${pragmaFrag}, signal, computed, effect, mount } from '${PACKAGE_NAME}';\n`
+
   return {
     name: 'vite-plugin-jsx',
 
@@ -31,9 +35,14 @@ export default function jsxPlugin(opts = {}) {
       const result = transformJSX(code, { pragma, pragmaFrag })
       if (result === code) return null
 
-      return { code: result, map: null }
+      const alreadyImported = code.includes(`from '${PACKAGE_NAME}'`) || code.includes(`from "${PACKAGE_NAME}"`)
+      const final = alreadyImported ? result : autoImport + result
+
+      console.log(final)
+
+      return { code: final, map: null }
     },
   }
 }
 
-export * from "./runtime.js";
+export * from './runtime.js'
